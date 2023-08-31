@@ -1,0 +1,10 @@
+with recursive t as (
+     select t.course_id as prereq_id
+     from prereq t join prereq as s ON t.prereq_id = s.course_id
+     where s.prereq_id = 'MAT15936'
+     union all
+     select c.course_id
+     from prereq as c join t on c.course_id = t.prereq_id
+)
+select prereq_id
+from t
