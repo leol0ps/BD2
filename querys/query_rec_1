@@ -1,0 +1,10 @@
+WITH RECURSIVE t AS (
+    select course_id
+    FROM prereq
+    where prereq_id = 'MAT15936'
+    UNION
+    SELECT p.course_id
+    from prereq p join t on p.prereq_id= t.course_id
+)
+select *
+from t
